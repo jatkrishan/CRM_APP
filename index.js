@@ -11,7 +11,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:true}))
 
 const mongoose = require("mongoose")
-mongoose.connect(configUrl.DB_URL)
+mongoose.connect(configUrl.DB_URL+configUrl.DB_NAME)
 const db = mongoose.connection
 
 
