@@ -55,8 +55,7 @@ return res.status(401).send({message: "User Id is doesn't exccit"})
 
   updateById : updateById ,
     findById  : findById ,
-    findAll   :  findAll ,
-    deleteById :  deleteById
+    findAll   :  findAll
  }
 
  module.exports = authjwt;
