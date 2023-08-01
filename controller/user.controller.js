@@ -39,7 +39,6 @@ const User = require("../model/user.model")
     userName: req.body.userName
    }).exec();
  
-
  try{
    if(user){
  return res.status(201).send({message: "User update successfully"})
@@ -49,9 +48,6 @@ return res.status(401).send({message: "User Id is doesn't exccit"})
   }catch(e){
     return res.status(500).send({message: "Some internal Error occured"})
   }
-
- }
- deleteById = (req, res) => {
 
  }
 

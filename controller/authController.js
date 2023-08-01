@@ -68,7 +68,7 @@ sigin = async (req,res) => {
         name:  userId.name,
         userType:  userId.userType,
         email:  userId.email,
-        userStatus:  userId.status,
+        userStatus:  userId.userStatus,
         userId:  userId.userId,
         createdAt: userId.createdAt,
         updatedAt:  userId.updatedAt,

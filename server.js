@@ -1,6 +1,6 @@
 // //import files
-const configUrl = require("./config/configUrl")
-const configPort = require("./config/server.config")
+const configDb = require("./config/db.config")
+const configServer = require("./config/server.config")
 
 
 // //install connection
@@ -11,7 +11,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:true}))
 
 const mongoose = require("mongoose")
-mongoose.connect(configUrl.DB_URL+configUrl.DB_NAME)
+mongoose.connect(configDb.DB_URL+configDb.DB_NAME)
 const db = mongoose.connection
 
 
@@ -31,6 +31,6 @@ require("./routs/ticket.routes")(app)
 
 
 
-app.listen(configPort.PORT, ()=>{
-    console.log("Application started on the port " , configPort.PORT)
+app.listen(configServer.PORT, ()=>{
+    console.log("Application started on the port " , configServer.PORT)
 })
