@@ -9,6 +9,7 @@ const app = express()
 const bodyParser = require("body-parser")
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:true}))
+require("dotenv").config()
 
 const mongoose = require("mongoose")
 mongoose.connect(configDb.DB_URL+configDb.DB_NAME)
