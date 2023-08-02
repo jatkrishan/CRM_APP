@@ -16,7 +16,7 @@
             headers: {"Content-Type": "application/json"}
         }
 
-      client.post("http://localhost:7777/notifaction/api/v1/notifaction" , args ,async function (data, response) {
+      client.post("https://notification-btna.onrender.com/notifaction/api/v1/notifaction" , args ,async function (data, response) {
 
       console.log(data)
 
