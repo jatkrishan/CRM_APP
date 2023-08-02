@@ -7,7 +7,7 @@ const authConfig = require("../config/auth.config")
 sigiup = async (req,res) => {
 const userType = req.body.userType;
 let userStatus = req.body.userStatus;
-if(userType === constant.userType.customer){
+if(userType === constant.userType.customer || userType === constant.userType.engineer){
     userStatus = constant.userStatus.approved
 }else
  {
