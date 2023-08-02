@@ -2,19 +2,18 @@
 const configDb = require("./config/db.config")
 const configServer = require("./config/server.config")
 
-
 // //install connection
+require("dotenv").config()
+var cors = require('cors');
 const express = require("express")
 const app = express()
-const cors = require("cors")
 const bodyParser = require("body-parser")
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:true}))
-require("dotenv").config()
 app.use(cors())
 
 const mongoose = require("mongoose")
-mongoose.connect(configDb.DB_URL+configDb.DB_NAME)
+mongoose.connect(configDb.DB_URL)
 const db = mongoose.connection
 
 

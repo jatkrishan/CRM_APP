@@ -1,4 +1,3 @@
- const { tickeltValdit } = require("../midilerware/ticket")
 const Ticket = require("../model/ticket.model")
  const User = require("../model/user.model")
  const constant = require("../units/constants")
