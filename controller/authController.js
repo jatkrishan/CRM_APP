@@ -7,7 +7,7 @@ const authConfig = require("../config/auth.config")
 sigiup = async (req,res) => {
 const userType = req.body.userType;
 let userStatus = req.body.userStatus;
-if(userType === constant.userType.customer){
+if(userType === constant.userType.customer || userType === constant.userType.creatLead){
     userStatus = constant.userStatus.approved
 }else
  {
@@ -34,7 +34,6 @@ if(userType === constant.userType.customer){
     }
   return  res.status(200).send(postResponce);
 }catch(e){
-    console.log("Error by creating occured by user")
     res.status(500).send({message: "Some intrnal error occured by user"})
 }
 }
