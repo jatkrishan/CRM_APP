@@ -38,7 +38,7 @@ if(!req.body.password){
 }
 //7 valid userType
 const userType = req.body.userType;
-const validUserTYpes = [constant.userType.admin,constant.userType.customer,constant.userType.engineer]
+const validUserTYpes = [constant.userType.admin,constant.userType.customer,constant.userType.engineer,constant.userType.creatLead]
 
 if(userType && !validUserTYpes.includes(userType)){
     res.status(400).send({message:"Faild! user Status is invalid"})

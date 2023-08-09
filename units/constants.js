@@ -2,7 +2,8 @@ module.exports = {
     userType :{
          customer: "CUSTOMER",
          engineer: "ENGINEER",
-         admin : "ADMIN"
+         admin : "ADMIN",
+         creatLead:"CREATLEAD"
     },
     userStatus : {
         pending: "PENDING",
