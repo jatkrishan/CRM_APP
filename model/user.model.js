@@ -39,14 +39,6 @@ const userSchema = new Schema({
           type: [mongoose.SchemaType.ObjectId],
           ref: "Ticket"
   },
-  gender: {
-      type:String,
-      required:true
-  },
-  address: {
-    type:String,
-    required:true
-},
   createdAt: {
       type: Date,
       immutable: true,
