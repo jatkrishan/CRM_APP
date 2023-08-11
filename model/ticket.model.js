@@ -1,6 +1,5 @@
 const mongoose = require("mongoose")
 const {Schema, model} = mongoose
-const variable = require("../units/constants")
 
 const ticketSchema = new Schema({
     title: {
@@ -22,8 +21,7 @@ const ticketSchema = new Schema({
        default: "OPEN"
    },
       reporter: {
-    type: String,
-    default:variable.userType.customer
+    type: String
    
    },
    assignee : {
