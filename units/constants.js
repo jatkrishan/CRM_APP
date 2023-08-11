@@ -3,7 +3,7 @@ module.exports = {
          customer: "CUSTOMER",
          engineer: "ENGINEER",
          admin : "ADMIN",
-         creatLead:"CREATLEAD"
+         creatLead:"SALES_REP"
     },
     userStatus : {
         pending: "PENDING",

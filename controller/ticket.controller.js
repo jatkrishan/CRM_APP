@@ -8,9 +8,7 @@ const Ticket = require("../model/ticket.model")
   const ticketObject = ({
     title: req.body.title,
     description: req.body.description,
-    status: req.body.status,
-    ticketPerioti: req.body. ticketPerioti,
-    reporter: req.userId  //this userId is req to verify token
+    priorty: req.body.priorty, //this userId is req to verify token
   })
   //assigen a engineer for user
   const engineer = await User.findOne({

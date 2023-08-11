@@ -1,5 +1,6 @@
 const mongoose = require("mongoose")
 const {Schema, model} = mongoose
+const variable = require("../units/constants")
 
 const ticketSchema = new Schema({
     title: {
@@ -10,7 +11,7 @@ const ticketSchema = new Schema({
         type: String,
         required: true
     },
-   ticketPerioti : {
+    priorty : {
     type: Number,
     required: true,
     default: 4
@@ -21,10 +22,11 @@ const ticketSchema = new Schema({
        default: "OPEN"
    },
       reporter: {
-    type: String
+    type: String,
+    default:variable.userType.customer
    
    },
-   assigen : {
+   assignee : {
     type: String
    },
    createdAt: {
