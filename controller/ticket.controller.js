@@ -89,8 +89,23 @@ const Ticket = require("../model/ticket.model")
 }
  
  
- exports.getAllTcket = async (req,res) => {
+ exports.getAllTcketOfCustomer = async (req,res) => {
+
   const ticket = await Ticket.find({reporter: req.userId})
+  try{
+     if(ticket){
+ return res.status(201).send(ticket)
+}
+  }catch(e){
+    res.status(500).send({message: "some error by user created"})
+  }
+
+
+ }
+
+ exports.getAllTcketOfEngineer = async (req,res) => {
+
+  const ticket = await Ticket.find({assignee: req.userId})
   try{
      if(ticket){
  return res.status(201).send(ticket)
