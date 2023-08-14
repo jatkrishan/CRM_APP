@@ -1,17 +1,36 @@
 const User = require("../model/user.model") 
  const userObjectConvert = require("../units/convertUserObject")
+ const constant = require(".././units/constants")
  
- findAll = async (req, res) => {
-  const users = await User.find()
+
+
+ findAllEngineer = async (req, res) => {
+  console.log("hi")
+  const users = await User.find({userType:constant.userType.engineer}).select({name:1,_id:0,userId:1,userStatus:1,email:1,createdAt:1,updatedAt:1,userType:1})
     try{
        if(users){
-   return res.status(201).send(userObjectConvert.userResponce(users))
+   return res.status(201).send(users)
   }
     }catch(e){
       res.status(500).send({message: "some error by user created"})
     }
 
  }
+
+ findAllCustomer = async (req, res) => {
+  const users = await User.find({userType:constant.userType.customer}).select({name:1,_id:0,userId:1,userStatus:1,email:1,createdAt:1,updatedAt:1,userType:1})
+    try{
+       if(users){
+   return res.status(201).send(users)
+  }
+    }catch(e){
+      res.status(500).send({message: "some error by user created"})
+    }
+
+ }
+
+
+
 
  findById = async (req, res) => {
     const Responce = req.params.userId
@@ -55,7 +74,8 @@ return res.status(401).send({message: "User Id is doesn't exccit"})
 
   updateById : updateById ,
     findById  : findById ,
-    findAll   :  findAll
+    findAllEngineer   :  findAllEngineer,
+    findAllCustomer: findAllCustomer
  }
 
  module.exports = authjwt;

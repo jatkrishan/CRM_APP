@@ -117,6 +117,19 @@ const Ticket = require("../model/ticket.model")
 
  }
 
+ exports.getAllTcketOfAdmin = async (req,res) => {
+
+  const tickets = await Ticket.find({})
+  try{
+     if(tickets){
+ return res.status(201).send(tickets)
+}
+  }catch(e){
+    res.status(500).send({message: "some error by user created"})
+  }
+
+
+ }
 
 
 
