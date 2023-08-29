@@ -1,5 +1,5 @@
-const {verifySignup} = require("../midilerware")
-const authController = require("../controller/authController")
+const {verifySignup} = require("../midilerware/index")
+const {authController} = require("../controller/index")
 
 
 module.exports = function (app) {

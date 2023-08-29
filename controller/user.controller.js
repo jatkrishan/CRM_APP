@@ -5,8 +5,7 @@ const User = require("../model/user.model")
 
 
  findAllEngineer = async (req, res) => {
-  console.log("hi")
-  const users = await User.find({userType:constant.userType.engineer}).select({name:1,_id:0,userId:1,userStatus:1,email:1,createdAt:1,updatedAt:1,userType:1})
+  const users = await User.find({userType:constant.userType.engineer}).select({userName:1,userId:1,userStatus:1,email:1,userType:1})
     try{
        if(users){
    return res.status(201).send(users)
@@ -18,7 +17,7 @@ const User = require("../model/user.model")
  }
 
  findAllCustomer = async (req, res) => {
-  const users = await User.find({userType:constant.userType.customer}).select({name:1,_id:0,userId:1,userStatus:1,email:1,createdAt:1,updatedAt:1,userType:1})
+  const users = await User.find({userType:constant.userType.customer}).select({userName:1,userId:1,userStatus:1,email:1,userType:1})
     try{
        if(users){
    return res.status(201).send(users)
@@ -53,11 +52,9 @@ const User = require("../model/user.model")
  
   const Responce = req.params.userId;
    const user =  await User.findOneAndUpdate({userId: Responce},{
-    userStatus: req.body.userStatus,
-    userType: req.body.userType,
-    userName: req.body.userName
+    userStatus: req.body.userStatus
    }).exec();
- 
+   
  try{
    if(user){
  return res.status(201).send({message: "User update successfully"})
@@ -67,15 +64,57 @@ return res.status(401).send({message: "User Id is doesn't exccit"})
   }catch(e){
     return res.status(500).send({message: "Some internal Error occured"})
   }
-
  }
 
- const authjwt = {
+ updateEngineer = async (req,res) => {
+  
+  const Responce = req.params.engineerId;
+  const user =  await User.findOneAndUpdate({userId: Responce},{
+   userStatus: req.body.userStatus
+  }).exec();
+  
+try{
+  if(user){
+return res.status(201).send({message: "User update successfully"})
+  }else{
+return res.status(401).send({message: "User Id is doesn't exccit"})
+  }
+ }catch(e){
+   return res.status(500).send({message: "Some internal Error occured"})
+ }
+ }
+ 
+ updateCustomer = async (req,res) => {
+
+  const Responce = req.params.userId;
+  const user =  await User.findOneAndUpdate({userId: Responce},{
+   userStatus: req.body.userStatus,
+   userId: req.body.userId
+  }).exec();
+  
+try{
+  if(user){
+return res.status(201).send({message: "User update successfully"})
+  }else{
+return res.status(401).send({message: "User Id is doesn't exccit"})
+  }
+ }catch(e){
+   return res.status(500).send({message: "Some internal Error occured"})
+ }
+
+
+ }
+ 
+ 
+
+ const userController = {
 
   updateById : updateById ,
     findById  : findById ,
     findAllEngineer   :  findAllEngineer,
-    findAllCustomer: findAllCustomer
+    findAllCustomer: findAllCustomer,
+    updateEngineer:  updateEngineer,
+    updateCustomer: updateCustomer
  }
 
- module.exports = authjwt;
+ module.exports =  userController;

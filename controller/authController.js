@@ -4,26 +4,33 @@ const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 const authConfig = require("../config/auth.config")
 
-sigiup = async (req,res) => {
+sigiup = async (req, res) => {
 const userType = req.body.userType;
 let userStatus = req.body.userStatus;
-if(userType === constant.userType.customer || userType === constant.userType.creatLead){
+if(userType === constant.userType.customer || userType === constant.userType.admin){
     userStatus = constant.userStatus.approved
+    
 }else
  {
+
  userStatus = constant.userStatus.pending;
-}try{
+
+}
+try{
+    console.log(req.body)
+    
     const createUser = await User.create({
-        name: req.body.name,
+        userName: req.body.userName,
         userId: req.body.userId,
         email: req.body.email,
         userStatus: userStatus,
         userType: req.body.userType,
         password: bcrypt.hashSync(req.body.password, 8)
+      
     })
-     
+   
     const postResponce = {
-        name: createUser.name,
+        userName: createUser.userName,
         userId: createUser.userId,
         email: createUser.email,
         userStatus: createUser.userStatus,
@@ -32,9 +39,11 @@ if(userType === constant.userType.customer || userType === constant.userType.cre
         updatedAt: createUser.updatedAt
 
     }
-  return  res.status(200).send(postResponce);
+    
+  return res.status(200).send(postResponce);
+ 
 }catch(e){
-    res.status(500).send({message: "Some intrnal error occured by user"})
+    return res.status(500).json({message: "Some intrnal error occured by user" , e})
 }
 }
 
@@ -64,7 +73,7 @@ sigin = async (req,res) => {
     })
  
     return  res.status(200).send({
-        name:  userId.name,
+        userName:  userId.userName,
         userType:  userId.userType,
         email:  userId.email,
         userStatus:  userId.userStatus,

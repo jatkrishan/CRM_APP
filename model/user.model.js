@@ -2,7 +2,7 @@ const mongoose = require("mongoose")
 const {Schema, model} = mongoose;
 
 const userSchema = new Schema({
-  name: {
+  userName: {
     type: String,
     required: true,
   },
@@ -29,16 +29,17 @@ const userSchema = new Schema({
   userStatus: {
      type: String,
      required:true,
-     default: "PENDING"
+     default: "PENDING",
+     enum:["PENDING","APPROVED"]
   },
-  ticketsCreated: {
-         type: [mongoose.SchemaType.ObjectId],
+  ticketsCreated: [{
+         type: mongoose.Schema.Types.ObjectId,
          ref: "Ticket"
-  },
-  ticketAssigen : {
-          type: [mongoose.SchemaType.ObjectId],
+  }],
+  ticketAssigen : [{
+          type: mongoose.Schema.Types.ObjectId,
           ref: "Ticket"
-  },
+  }],
   createdAt: {
       type: Date,
       immutable: true,
@@ -51,5 +52,4 @@ const userSchema = new Schema({
 
 })
 
-let User = model("User", userSchema)
-module.exports = User;
+module.exports =model("User", userSchema)

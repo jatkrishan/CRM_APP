@@ -2,46 +2,51 @@ const User = require("../model/user.model")
 const constant = require("../units/constants")
 validateSignupRequest = async(req,res,next) => {
 //1 name
-if(!req.body.name){
-    res.status(500).send({message:"Faild! Name is Not Provid"})
-    return;
+if(!req.body.userName){
+    return res.status(400).json({message:"Faild! userName is Not Provid"})
+   
 }
 //2 userId
 if(!req.body.userId){
-    res.status(500).send({message:"Faild! userId is Not Provid"})
-    return
+    return res.status(400).json({message:"Faild! userId is Not Provid"})
+   
 }
 //3 check userId alredy excit
  const user = await User.findOne({userId:req.body.userId})
 
  if(user != null){
-    res.status(400).send({massage: "Faild! User is alredy present"})
-   return;
+    return res.status(400).json({massage: "Faild! User is alredy present"})
+  
 }
 //4 email valid
 const email = await User.findOne({email: req.body.email})
 if(email != null){
-    res.status(400).send({massage: "Faild! email is alredy present"})
-   return;
+    return res.status(400).json({massage: "Faild! email is alredy present"})
+  
 }
 //5 email check
 if(!req.body.email){
-    res.status(400).send({massage: "Faild! email is  not provided"})
-   return;
+    return res.status(400).json({massage: "Faild! email is  not provided"})
+  
 }
 
 
 //6 password valid
 if(!req.body.password){
-    res.status(400).send({message:"Faild! password is Not Provid"})
-    return
+    return res.status(400).json({message:"Faild! password is Not Provid"})
+    
 }
 //7 valid userType
+if(!req.body.userType){
+    return res.status(400).json({message:"Faild! userType is Not Provid"})
+}
+
+
 const userType = req.body.userType;
-const validUserTYpes = [constant.userType.admin,constant.userType.customer,constant.userType.engineer,constant.userType.creatLead]
+const validUserTYpes = [constant.userType.admin, constant.userType.customer, constant.userType.engineer]
 
 if(userType && !validUserTYpes.includes(userType)){
-    res.status(400).send({message:"Faild! user Status is invalid"})
+    res.status(400).json({message:"Faild! user userStatus is invalid"})
     return;
 }
 
